@@ -275,14 +275,13 @@ img.mfp-img {
 
 .mfp-bottom-bar {
   margin-top: -100px;
-  margin-left: 13px;
-  margin-right: 12px;
   padding: 10px 20px;
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
-  cursor: auto; }
+  left: 16px;
+  right: 12px;
+  cursor: auto;
+  background-color: rgba(27, 26, 26, 0.85); }
 
 .mfp-title {
   text-align: left;
