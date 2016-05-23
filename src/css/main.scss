@@ -440,15 +440,24 @@ button {
     right: 12px;
     cursor: auto;
     background-color: rgba(27, 26, 26, 0.85);
+    height: 65px;
+    overflow: hidden;
   }
   .mfp-title {
     text-align: left;
     line-height: 18px;
-    font-size: 15px;
-    font-family: "Roboto Bold";
     color: $mfp-caption-title-color;
     word-wrap: break-word;
     padding-right: 36px; // leave some space for counter at right side
+    h4{
+      color: inherit;
+      font-size: 15px;
+      font-family: "Roboto Bold";
+    }
+    >p{
+      color: $mfp-caption-subtitle-color;
+      font-family: "Roboto Regular";
+    }
   }
 
   .mfp-image-holder {

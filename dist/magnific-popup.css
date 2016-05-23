@@ -281,16 +281,23 @@ img.mfp-img {
   left: 16px;
   right: 12px;
   cursor: auto;
-  background-color: rgba(27, 26, 26, 0.85); }
+  background-color: rgba(27, 26, 26, 0.85);
+  height: 65px;
+  overflow: hidden; }
 
 .mfp-title {
   text-align: left;
   line-height: 18px;
-  font-size: 15px;
-  font-family: "Roboto Bold";
   color: #FFFFFF;
   word-wrap: break-word;
   padding-right: 36px; }
+  .mfp-title h4 {
+    color: inherit;
+    font-size: 15px;
+    font-family: "Roboto Bold"; }
+  .mfp-title > p {
+    color: #7a7a7a;
+    font-family: "Roboto Regular"; }
 
 .mfp-image-holder .mfp-content {
   max-width: 100%; }
