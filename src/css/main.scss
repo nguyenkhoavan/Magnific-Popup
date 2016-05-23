@@ -432,7 +432,10 @@ button {
     }
   }
   .mfp-bottom-bar {
-    margin-top: -$mfp-image-padding-bottom + 4;
+    margin-top: -100px;
+    margin-left: 13px;
+    margin-right: 12px;
+    padding: 10px 20px;
     position: absolute;
     top: 100%;
     left: 0;
