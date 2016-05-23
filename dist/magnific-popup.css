@@ -274,12 +274,12 @@ img.mfp-img {
     padding: 12px 12px 12px 13px; }
 
 .mfp-bottom-bar {
-  margin-top: -100px;
+  margin-top: -89px;
   padding: 10px 20px;
   position: absolute;
   top: 100%;
   left: 16px;
-  right: 12px;
+  right: 15px;
   cursor: auto;
   background-color: rgba(27, 26, 26, 0.85);
   height: 65px;
@@ -294,10 +294,16 @@ img.mfp-img {
   .mfp-title h4 {
     color: inherit;
     font-size: 15px;
-    font-family: "Roboto Bold"; }
+    font-family: "Roboto Bold";
+    margin: 3px 0; }
   .mfp-title > p {
     color: #7a7a7a;
     font-family: "Roboto Regular"; }
+  .mfp-title > h4, .mfp-title > p {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
 
 .mfp-image-holder .mfp-content {
   max-width: 100%; }
