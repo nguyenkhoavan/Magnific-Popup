@@ -428,6 +428,7 @@ button {
     }
     figure {
       margin: 0;
+      padding: 12px 12px 12px 13px;
     }
   }
   .mfp-bottom-bar {
@@ -441,6 +442,8 @@ button {
   .mfp-title {
     text-align: left;
     line-height: 18px;
+    font-size: 15px;
+    font-family: "Roboto Bold";
     color: $mfp-caption-title-color;
     word-wrap: break-word;
     padding-right: 36px; // leave some space for counter at right side
