@@ -137,10 +137,9 @@ MagnificPopup.prototype = {
 	 * @param  data [description]
 	 */
 	open: function(data) {
-
 		var i;
 
-		if(data.isObj === false) { 
+		if(data.isObj === false) {
 			// convert jQuery collection to array to avoid conflicts later
 			mfp.items = data.items.toArray();
 
@@ -896,29 +895,29 @@ $.fn.magnificPopup = function(options) {
 
 	// We call some API method of first param is a string
 	if (typeof options === "string" ) {
+    if(options === 'open') {
 
-		if(options === 'open') {
 			var items,
 				itemOpts = _isJQ ? jqEl.data('magnificPopup') : jqEl[0].magnificPopup,
 				index = parseInt(arguments[1], 10) || 0;
-
-			if(itemOpts.items) {
-				items = itemOpts.items[index];
-			} else {
-				items = jqEl;
-				if(itemOpts.delegate) {
-					items = items.find(itemOpts.delegate);
-				}
-				items = items.eq( index );
-			}
-			mfp._openClick({mfpEl:items}, jqEl, itemOpts);
-		} else {
-			if(mfp.isOpen)
-				mfp[options].apply(mfp, Array.prototype.slice.call(arguments, 1));
-		}
+      if(itemOpts.items) {
+        items = itemOpts.items[index];
+      } else {
+        items = jqEl;
+        if(itemOpts.delegate) {
+          items = items.find(itemOpts.delegate);
+        }
+        items = items.eq( index );
+      }
+      mfp._openClick({mfpEl:items}, jqEl, itemOpts);
+    } else {
+      if(mfp.isOpen) {
+        mfp[options].apply(mfp, Array.prototype.slice.call(arguments, 1));
+      }
+    }
 
 	} else {
-		// clone options obj
+    // clone options obj
 		options = $.extend(true, {}, options);
 
 		/*
@@ -926,7 +925,7 @@ $.fn.magnificPopup = function(options) {
 		 * and it works only in normal browsers
 		 * we assign "options" object directly to the DOM element. FTW!
 		 */
-		if(_isJQ) {
+    if(_isJQ) {
 			jqEl.data('magnificPopup', options);
 		} else {
 			jqEl[0].magnificPopup = options;

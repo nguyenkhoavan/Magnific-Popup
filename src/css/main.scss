@@ -1,5 +1,4 @@
 /* Magnific Popup CSS */
-
 @import "settings";
 
 ////////////////////////
@@ -24,8 +23,6 @@
 //
 ////////////////////////
 
-
-
 ////////////////////////
 // 1. General styles
 ////////////////////////
@@ -39,7 +36,6 @@
   z-index: $mfp-z-index-base + 2;
   overflow: hidden;
   position: fixed;
-
   background: $mfp-overlay-color;
   opacity: $mfp-overlay-opacity;
 }
@@ -96,6 +92,7 @@
   text-align: left;
   z-index: $mfp-z-index-base + 5;
 }
+
 .mfp-inline-holder,
 .mfp-ajax-holder {
   .mfp-content {
@@ -108,6 +105,7 @@
 .mfp-ajax-cur {
   cursor: progress;
 }
+
 .mfp-zoom-out-cur {
   &, .mfp-image-holder .mfp-close {
     cursor: -moz-zoom-out;
@@ -115,12 +113,14 @@
     cursor: zoom-out;
   }
 }
+
 .mfp-zoom {
   cursor: pointer;
   cursor: -webkit-zoom-in;
   cursor: -moz-zoom-in;
   cursor: zoom-in;
 }
+
 .mfp-auto-cursor {
   .mfp-content {
     cursor: auto;
@@ -131,7 +131,7 @@
 .mfp-arrow,
 .mfp-preloader,
 .mfp-counter {
-  -webkit-user-select:none;
+  -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
 }
@@ -140,6 +140,66 @@
 .mfp-loading {
   &.mfp-figure {
     display: none;
+  }
+}
+
+// Thumbnail Navigation
+.mfp-thumbnails {
+
+  .mfp-figure {
+    figure {
+      background: #fff;
+    }
+
+    &:after {
+      display: none;
+    }
+  }
+
+  img.mfp-img {
+    padding: 10px 10px 0;
+  }
+
+  figcaption {
+    display: block;
+    position: relative;
+    width: auto;
+    padding: 0 10px;
+    height: 75px;
+
+    .mfp-bottom-bar {
+      margin-top: 0;
+      top: 0;
+      position: relative;
+
+      .mfp-title {
+        padding: 10px;
+        transform: translateY(-100%);
+        background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+        background-image: -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+        background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
+        background-color: transparent;
+      }
+
+      .mfp-desc {
+        position: absolute;
+        padding: 10px;
+        top: 0;
+        height: 53px;
+        line-height: 19px;
+      }
+    }
+  }
+
+  .mfp-thumbnails-navigation {
+    position: relative;
+    width: auto;
+    height: 75px;
+    left: 50%;
+    margin-top: 20px;
+    transform: translate(-50%);
   }
 }
 
@@ -161,7 +221,6 @@
     display: none !important;
   }
 }
-
 
 ////////////////////////
 // 2. Appearance
@@ -217,18 +276,16 @@ button {
     touch-action: manipulation;
   }
   &::-moz-focus-inner {
-      padding: 0;
-      border: 0
+    padding: 0;
+    border: 0
   }
 }
-
 
 // Close icon
 .mfp-close {
   width: 44px;
   height: 44px;
   line-height: 44px;
-
   position: absolute;
   right: 0;
   top: 0;
@@ -237,7 +294,6 @@ button {
   opacity: $mfp-controls-opacity;
   padding: 0 0 18px 10px;
   color: $mfp-controls-color;
-
   font-style: normal;
   font-size: 28px;
   font-family: Arial, Baskerville, monospace;
@@ -251,11 +307,13 @@ button {
     top: 1px;
   }
 }
+
 .mfp-close-btn-in {
   .mfp-close {
     color: $mfp-inner-close-icon-color;
   }
 }
+
 .mfp-image-holder,
 .mfp-iframe-holder {
   .mfp-close {
@@ -289,7 +347,7 @@ button {
     padding: 0;
     width: 90px;
     height: 110px;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     &:active {
       margin-top: -54px;
     }
@@ -312,10 +370,9 @@ button {
     }
 
     &:after {
-
       border-top-width: 13px;
       border-bottom-width: 13px;
-      top:8px;
+      top: 8px;
     }
 
     &:before {
@@ -350,8 +407,6 @@ button {
   }
 }
 
-
-
 // Iframe content type
 @if $mfp-include-iframe-type {
   .mfp-iframe-holder {
@@ -383,8 +438,6 @@ button {
     }
   }
 }
-
-
 
 // Image content type
 @if $mfp-include-image-type {
@@ -440,9 +493,11 @@ button {
   }
   .mfp-title {
     text-align: left;
-    line-height: 18px;
     color: $mfp-caption-title-color;
     word-wrap: break-word;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2;
     padding-right: 36px; // leave some space for counter at right side
   }
 
@@ -460,9 +515,8 @@ button {
     }
   }
 
-
   @if $mfp-include-mobile-layout-for-image {
-    @media screen and (max-width: 800px) and (orientation:landscape), screen and (max-height: 300px) {
+    @media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
       /**
        * Remove all paddings around the image on small screen
        */
@@ -488,7 +542,7 @@ button {
           }
         }
         .mfp-bottom-bar {
-          background: rgba(0,0,0,0.6);
+          background: rgba(0, 0, 0, 0.6);
           bottom: 0;
           margin: 0;
           top: auto;
@@ -518,8 +572,6 @@ button {
     }
   }
 }
-
-
 
 // Scale navigation arrows and reduce padding from sides
 @media all and (max-width: 900px) {

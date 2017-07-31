@@ -4,7 +4,7 @@
 
 // overlay
 $mfp-overlay-color:                   #0b0b0b !default;                    // Color of overlay screen
-$mfp-overlay-opacity:                 0.8 !default;                        // Opacity of overlay screen
+$mfp-overlay-opacity:                 1 !default;                        // Opacity of overlay screen
 $mfp-shadow:                          0 0 8px rgba(0, 0, 0, 0.6) !default; // Shadow on image or iframe
 
 // spacing
@@ -37,7 +37,7 @@ $mfp-image-padding-bottom:            40px !default;                       // Im
 $mfp-include-mobile-layout-for-image: true !default;                       // Removes paddings from top and bottom
 
 // Image caption options
-$mfp-caption-title-color:             #F3F3F3 !default;                    // Caption title color
+$mfp-caption-title-color:             #FFFFFF !default;                    // Caption title color
 $mfp-caption-subtitle-color:          #BDBDBD !default;                    // Caption subtitle color
 
 // A11y

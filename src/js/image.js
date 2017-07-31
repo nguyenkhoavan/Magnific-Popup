@@ -1,19 +1,49 @@
 var _imgInterval,
-	_getTitle = function(item) {
-		if(item.data && item.data.title !== undefined)
-			return item.data.title;
+    _getTitle = function (item) {
+      if (item.data && item.data.title !== undefined)
+        return item.data.title;
 
-		var src = mfp.st.image.titleSrc;
+      var src = mfp.st.image.titleSrc;
 
-		if(src) {
-			if($.isFunction(src)) {
-				return src.call(mfp, item);
-			} else if(item.el) {
-				return item.el.attr(src) || '';
-			}
-		}
-		return '';
-	};
+      if (src) {
+        if ($.isFunction(src)) {
+          return src.call(mfp, item);
+        } else if (item.el) {
+          return item.el.attr(src) || '';
+        }
+      }
+      return '';
+    },
+    _getDescription = function (item) {
+      if (item.data && item.data.desc !== undefined)
+        return item.data.desc;
+
+      var src = mfp.st.image.descSrc;
+
+      if (src) {
+        if ($.isFunction(src)) {
+          return src.call(mfp, item);
+        } else if (item.el) {
+          return item.el.attr(src) || '';
+        }
+      }
+      return '';
+    },
+    _getUrl = function (item) {
+      if (item.data && item.data.url !== undefined)
+        return item.data.url;
+
+      var src = mfp.st.image.urlSrc;
+
+      if (src) {
+        if ($.isFunction(src)) {
+          return src.call(mfp, item);
+        } else if (item.el) {
+          return item.el.attr(src) || '';
+        }
+      }
+      return '';
+    };
 
 $.magnificPopup.registerModule('image', {
 
@@ -25,13 +55,17 @@ $.magnificPopup.registerModule('image', {
 						'<figcaption>'+
 							'<div class="mfp-bottom-bar">'+
 								'<div class="mfp-title"></div>'+
-								'<div class="mfp-counter"></div>'+
+                '<div class="mfp-counter"></div>'+
+								'<div class="mfp-desc"></div>'+
+								'<div class="mfp-url"></div>'+
 							'</div>'+
 						'</figcaption>'+
 					'</figure>'+
 				'</div>',
 		cursor: 'mfp-zoom-out-cur',
 		titleSrc: 'title',
+		descSrc: 'desc',
+    urlSrc: 'url',
 		verticalFit: true,
 		tError: '<a href="%url%">The image</a> could not be loaded.'
 	},
@@ -66,12 +100,12 @@ $.magnificPopup.registerModule('image', {
 			if(!item || !item.img) return;
 
 			if(mfp.st.image.verticalFit) {
-				var decr = 0;
+				var decr = 75;
 				// fix box-sizing in ie7/8
 				if(mfp.isLowIE) {
 					decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
 				}
-				item.img.css('max-height', mfp.wH-decr);
+				item.img.css('max-height', 500);
 			}
 		},
 		_onImageHasSize: function(item) {
@@ -211,6 +245,8 @@ $.magnificPopup.registerModule('image', {
 
 			mfp._parseMarkup(template, {
 				title: _getTitle(item),
+				desc: _getDescription(item),
+				url: _getUrl(item),
 				img_replaceWith: item.img
 			}, item);
 

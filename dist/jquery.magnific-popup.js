@@ -1,6 +1,6 @@
-/*! Magnific Popup - v1.1.0 - 2016-02-20
+/*! Magnific Popup - v1.1.0 - 2017-07-31
 * http://dimsemenov.com/plugins/magnific-popup/
-* Copyright (c) 2016 Dmitry Semenov; */
+* Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
 if (typeof define === 'function' && define.amd) { 
  // AMD. Register as an anonymous module. 
@@ -154,10 +154,9 @@ MagnificPopup.prototype = {
 	 * @param  data [description]
 	 */
 	open: function(data) {
-
 		var i;
 
-		if(data.isObj === false) { 
+		if(data.isObj === false) {
 			// convert jQuery collection to array to avoid conflicts later
 			mfp.items = data.items.toArray();
 
@@ -712,7 +711,7 @@ MagnificPopup.prototype = {
 	// "target" is an element that was clicked
 	_checkIfClose: function(target) {
 
-		if($(target).hasClass(PREVENT_CLOSE_CLASS)) {
+		if($(target).closest('.' + PREVENT_CLOSE_CLASS).length) {
 			return;
 		}
 
@@ -724,7 +723,7 @@ MagnificPopup.prototype = {
 		} else {
 
 			// We close the popup if click is on close button or on preloader. Or if there is no content.
-			if(!mfp.content || $(target).hasClass('mfp-close') || (mfp.preloader && target === mfp.preloader[0]) ) {
+			if(!mfp.content || $(target).closest('.mfp-close').length || (mfp.preloader && target === mfp.preloader[0]) ) {
 				return true;
 			}
 
@@ -913,29 +912,29 @@ $.fn.magnificPopup = function(options) {
 
 	// We call some API method of first param is a string
 	if (typeof options === "string" ) {
+    if(options === 'open') {
 
-		if(options === 'open') {
 			var items,
 				itemOpts = _isJQ ? jqEl.data('magnificPopup') : jqEl[0].magnificPopup,
 				index = parseInt(arguments[1], 10) || 0;
-
-			if(itemOpts.items) {
-				items = itemOpts.items[index];
-			} else {
-				items = jqEl;
-				if(itemOpts.delegate) {
-					items = items.find(itemOpts.delegate);
-				}
-				items = items.eq( index );
-			}
-			mfp._openClick({mfpEl:items}, jqEl, itemOpts);
-		} else {
-			if(mfp.isOpen)
-				mfp[options].apply(mfp, Array.prototype.slice.call(arguments, 1));
-		}
+      if(itemOpts.items) {
+        items = itemOpts.items[index];
+      } else {
+        items = jqEl;
+        if(itemOpts.delegate) {
+          items = items.find(itemOpts.delegate);
+        }
+        items = items.eq( index );
+      }
+      mfp._openClick({mfpEl:items}, jqEl, itemOpts);
+    } else {
+      if(mfp.isOpen) {
+        mfp[options].apply(mfp, Array.prototype.slice.call(arguments, 1));
+      }
+    }
 
 	} else {
-		// clone options obj
+    // clone options obj
 		options = $.extend(true, {}, options);
 
 		/*
@@ -943,7 +942,7 @@ $.fn.magnificPopup = function(options) {
 		 * and it works only in normal browsers
 		 * we assign "options" object directly to the DOM element. FTW!
 		 */
-		if(_isJQ) {
+    if(_isJQ) {
 			jqEl.data('magnificPopup', options);
 		} else {
 			jqEl[0].magnificPopup = options;
@@ -1110,21 +1109,51 @@ $.magnificPopup.registerModule(AJAX_NS, {
 
 /*>>image*/
 var _imgInterval,
-	_getTitle = function(item) {
-		if(item.data && item.data.title !== undefined)
-			return item.data.title;
+    _getTitle = function (item) {
+      if (item.data && item.data.title !== undefined)
+        return item.data.title;
 
-		var src = mfp.st.image.titleSrc;
+      var src = mfp.st.image.titleSrc;
 
-		if(src) {
-			if($.isFunction(src)) {
-				return src.call(mfp, item);
-			} else if(item.el) {
-				return item.el.attr(src) || '';
-			}
-		}
-		return '';
-	};
+      if (src) {
+        if ($.isFunction(src)) {
+          return src.call(mfp, item);
+        } else if (item.el) {
+          return item.el.attr(src) || '';
+        }
+      }
+      return '';
+    },
+    _getDescription = function (item) {
+      if (item.data && item.data.desc !== undefined)
+        return item.data.desc;
+
+      var src = mfp.st.image.descSrc;
+
+      if (src) {
+        if ($.isFunction(src)) {
+          return src.call(mfp, item);
+        } else if (item.el) {
+          return item.el.attr(src) || '';
+        }
+      }
+      return '';
+    },
+    _getUrl = function (item) {
+      if (item.data && item.data.url !== undefined)
+        return item.data.url;
+
+      var src = mfp.st.image.urlSrc;
+
+      if (src) {
+        if ($.isFunction(src)) {
+          return src.call(mfp, item);
+        } else if (item.el) {
+          return item.el.attr(src) || '';
+        }
+      }
+      return '';
+    };
 
 $.magnificPopup.registerModule('image', {
 
@@ -1136,13 +1165,17 @@ $.magnificPopup.registerModule('image', {
 						'<figcaption>'+
 							'<div class="mfp-bottom-bar">'+
 								'<div class="mfp-title"></div>'+
-								'<div class="mfp-counter"></div>'+
+                '<div class="mfp-counter"></div>'+
+								'<div class="mfp-desc"></div>'+
+								'<div class="mfp-url"></div>'+
 							'</div>'+
 						'</figcaption>'+
 					'</figure>'+
 				'</div>',
 		cursor: 'mfp-zoom-out-cur',
 		titleSrc: 'title',
+		descSrc: 'desc',
+    urlSrc: 'url',
 		verticalFit: true,
 		tError: '<a href="%url%">The image</a> could not be loaded.'
 	},
@@ -1177,12 +1210,12 @@ $.magnificPopup.registerModule('image', {
 			if(!item || !item.img) return;
 
 			if(mfp.st.image.verticalFit) {
-				var decr = 0;
+				var decr = 75;
 				// fix box-sizing in ie7/8
 				if(mfp.isLowIE) {
 					decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
 				}
-				item.img.css('max-height', mfp.wH-decr);
+				item.img.css('max-height', 500);
 			}
 		},
 		_onImageHasSize: function(item) {
@@ -1322,6 +1355,8 @@ $.magnificPopup.registerModule('image', {
 
 			mfp._parseMarkup(template, {
 				title: _getTitle(item),
+				desc: _getDescription(item),
+				url: _getUrl(item),
 				img_replaceWith: item.img
 			}, item);
 
@@ -1655,166 +1690,212 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 /**
  * Get looped index depending on number of slides
  */
-var _getLoopedId = function(index) {
-		var numSlides = mfp.items.length;
-		if(index > numSlides - 1) {
-			return index - numSlides;
-		} else  if(index < 0) {
-			return numSlides + index;
-		}
-		return index;
-	},
-	_replaceCurrTotal = function(text, curr, total) {
-		return text.replace(/%curr%/gi, curr + 1).replace(/%total%/gi, total);
-	};
+var _getLoopedId = function (index) {
+      var numSlides = mfp.items.length;
+      if (index > numSlides - 1) {
+        return index - numSlides;
+      } else if (index < 0) {
+        return numSlides + index;
+      }
+      return index;
+    },
+    _replaceCurrTotal = function (text, curr, total) {
+      return text.replace(/%curr%/gi, curr + 1).replace(/%total%/gi, total);
+    };
 
 $.magnificPopup.registerModule('gallery', {
 
-	options: {
-		enabled: false,
-		arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
-		preload: [0,2],
-		navigateByImgClick: true,
-		arrows: true,
+  options: {
+    enabled: false,
+    arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+    preload: [0, 2],
+    navigateByImgClick: true,
+    arrows: true,
 
-		tPrev: 'Previous (Left arrow key)',
-		tNext: 'Next (Right arrow key)',
-		tCounter: '%curr% of %total%'
-	},
+    tPrev: 'Previous (Left arrow key)',
+    tNext: 'Next (Right arrow key)',
+    tCounter: '%curr% of %total%',
 
-	proto: {
-		initGallery: function() {
+    thumbsNav: {
+      enabled: true,
+      size: ['auto', '75px'],
+      ns: '.mfp-thumbnails'
+    }
+  },
 
-			var gSt = mfp.st.gallery,
-				ns = '.mfp-gallery';
+  proto: {
+    initGallery: function () {
 
-			mfp.direction = true; // true - next, false - prev
+      var gSt = mfp.st.gallery,
+          ns = '.mfp-gallery';
 
-			if(!gSt || !gSt.enabled ) return false;
+      mfp.direction = true; // true - next, false - prev
 
-			_wrapClasses += ' mfp-gallery';
+      if (!gSt || !gSt.enabled) return false;
 
-			_mfpOn(OPEN_EVENT+ns, function() {
+      _wrapClasses += ' mfp-gallery';
+      if (gSt.thumbsNav.enabled) {
+        _wrapClasses += ' mfp-thumbnails';
+      }
 
-				if(gSt.navigateByImgClick) {
-					mfp.wrap.on('click'+ns, '.mfp-img', function() {
-						if(mfp.items.length > 1) {
-							mfp.next();
-							return false;
-						}
-					});
-				}
+      _mfpOn(OPEN_EVENT + ns, function () {
 
-				_document.on('keydown'+ns, function(e) {
-					if (e.keyCode === 37) {
-						mfp.prev();
-					} else if (e.keyCode === 39) {
-						mfp.next();
-					}
-				});
-			});
+        if (gSt.navigateByImgClick) {
+          mfp.wrap.on('click' + ns, '.mfp-img', function () {
+            if (mfp.items.length > 1) {
+              mfp.next();
+              return false;
+            }
+          });
+        }
 
-			_mfpOn('UpdateStatus'+ns, function(e, data) {
-				if(data.text) {
-					data.text = _replaceCurrTotal(data.text, mfp.currItem.index, mfp.items.length);
-				}
-			});
+        _document.on('keydown' + ns, function (e) {
+          if (e.keyCode === 37) {
+            mfp.prev();
+          } else if (e.keyCode === 39) {
+            mfp.next();
+          }
+        });
+      });
 
-			_mfpOn(MARKUP_PARSE_EVENT+ns, function(e, element, values, item) {
-				var l = mfp.items.length;
-				values.counter = l > 1 ? _replaceCurrTotal(gSt.tCounter, item.index, l) : '';
-			});
+      _mfpOn(OPEN_EVENT + gSt.thumbsNav.ns, function () {
 
-			_mfpOn('BuildControls' + ns, function() {
-				if(mfp.items.length > 1 && gSt.arrows && !mfp.arrowLeft) {
-					var markup = gSt.arrowMarkup,
-						arrowLeft = mfp.arrowLeft = $( markup.replace(/%title%/gi, gSt.tPrev).replace(/%dir%/gi, 'left') ).addClass(PREVENT_CLOSE_CLASS),
-						arrowRight = mfp.arrowRight = $( markup.replace(/%title%/gi, gSt.tNext).replace(/%dir%/gi, 'right') ).addClass(PREVENT_CLOSE_CLASS);
+        mfp.wrap.on('click' + gSt.thumbsNav.ns, '.mfp-thumbnails-navigation img', function () {
+          var me = $(this);
+          mfp.goTo(me.data('index'));
+        });
+      });
 
-					arrowLeft.click(function() {
-						mfp.prev();
-					});
-					arrowRight.click(function() {
-						mfp.next();
-					});
+      _mfpOn('UpdateStatus' + ns, function (e, data) {
+        if (data.text) {
+          data.text = _replaceCurrTotal(data.text, mfp.currItem.index, mfp.items.length);
+        }
+      });
 
-					mfp.container.append(arrowLeft.add(arrowRight));
-				}
-			});
+      _mfpOn(MARKUP_PARSE_EVENT + ns, function (e, element, values, item) {
+        var l = mfp.items.length;
+        values.counter = l > 1 ? _replaceCurrTotal(gSt.tCounter, item.index, l) : '';
+      });
 
-			_mfpOn(CHANGE_EVENT+ns, function() {
-				if(mfp._preloadTimeout) clearTimeout(mfp._preloadTimeout);
+      _mfpOn('BuildControls' + ns, function () {
+        if (mfp.items.length > 1 && gSt.arrows && !mfp.arrowLeft) {
+          var markup = gSt.arrowMarkup,
+              arrowLeft = mfp.arrowLeft = $(markup.replace(/%title%/gi, gSt.tPrev).replace(/%dir%/gi, 'left')).addClass(PREVENT_CLOSE_CLASS),
+              arrowRight = mfp.arrowRight = $(markup.replace(/%title%/gi, gSt.tNext).replace(/%dir%/gi, 'right')).addClass(PREVENT_CLOSE_CLASS);
 
-				mfp._preloadTimeout = setTimeout(function() {
-					mfp.preloadNearbyImages();
-					mfp._preloadTimeout = null;
-				}, 16);
-			});
+          arrowLeft.click(function () {
+            mfp.prev();
+          });
+          arrowRight.click(function () {
+            mfp.next();
+          });
 
+          mfp._buildThumbnailNavigation();
 
-			_mfpOn(CLOSE_EVENT+ns, function() {
-				_document.off(ns);
-				mfp.wrap.off('click'+ns);
-				mfp.arrowRight = mfp.arrowLeft = null;
-			});
+          mfp.container.append(arrowLeft.add(arrowRight));
+        }
+      });
 
-		},
-		next: function() {
-			mfp.direction = true;
-			mfp.index = _getLoopedId(mfp.index + 1);
-			mfp.updateItemHTML();
-		},
-		prev: function() {
-			mfp.direction = false;
-			mfp.index = _getLoopedId(mfp.index - 1);
-			mfp.updateItemHTML();
-		},
-		goTo: function(newIndex) {
-			mfp.direction = (newIndex >= mfp.index);
-			mfp.index = newIndex;
-			mfp.updateItemHTML();
-		},
-		preloadNearbyImages: function() {
-			var p = mfp.st.gallery.preload,
-				preloadBefore = Math.min(p[0], mfp.items.length),
-				preloadAfter = Math.min(p[1], mfp.items.length),
-				i;
+      _mfpOn(CHANGE_EVENT + ns, function () {
+        if (mfp._preloadTimeout) clearTimeout(mfp._preloadTimeout);
 
-			for(i = 1; i <= (mfp.direction ? preloadAfter : preloadBefore); i++) {
-				mfp._preloadItem(mfp.index+i);
-			}
-			for(i = 1; i <= (mfp.direction ? preloadBefore : preloadAfter); i++) {
-				mfp._preloadItem(mfp.index-i);
-			}
-		},
-		_preloadItem: function(index) {
-			index = _getLoopedId(index);
-
-			if(mfp.items[index].preloaded) {
-				return;
-			}
-
-			var item = mfp.items[index];
-			if(!item.parsed) {
-				item = mfp.parseEl( index );
-			}
-
-			_mfpTrigger('LazyLoad', item);
-
-			if(item.type === 'image') {
-				item.img = $('<img class="mfp-img" />').on('load.mfploader', function() {
-					item.hasSize = true;
-				}).on('error.mfploader', function() {
-					item.hasSize = true;
-					item.loadError = true;
-					_mfpTrigger('LazyLoadError', item);
-				}).attr('src', item.src);
-			}
+        mfp._preloadTimeout = setTimeout(function () {
+          mfp.preloadNearbyImages();
+          mfp._preloadTimeout = null;
+        }, 16);
+      });
 
 
-			item.preloaded = true;
-		}
-	}
+      _mfpOn(CLOSE_EVENT + ns, function () {
+        _document.off(ns);
+        mfp.wrap.off('click' + ns);
+        mfp.arrowRight = mfp.arrowLeft = null;
+      });
+
+    },
+    next: function () {
+      mfp.direction = true;
+      mfp.index = _getLoopedId(mfp.index + 1);
+      mfp.updateItemHTML();
+    },
+    prev: function () {
+      mfp.direction = false;
+      mfp.index = _getLoopedId(mfp.index - 1);
+      mfp.updateItemHTML();
+    },
+    goTo: function (newIndex) {
+      mfp.direction = (newIndex >= mfp.index);
+      mfp.index = newIndex;
+      mfp.updateItemHTML();
+    },
+    preloadNearbyImages: function () {
+      var p = mfp.st.gallery.preload,
+          preloadBefore = Math.min(p[0], mfp.items.length),
+          preloadAfter = Math.min(p[1], mfp.items.length),
+          i;
+
+      for (i = 1; i <= (mfp.direction ? preloadAfter : preloadBefore); i++) {
+        mfp._preloadItem(mfp.index + i);
+      }
+      for (i = 1; i <= (mfp.direction ? preloadBefore : preloadAfter); i++) {
+        mfp._preloadItem(mfp.index - i);
+      }
+    },
+    _preloadItem: function (index) {
+      index = _getLoopedId(index);
+
+      if (mfp.items[index].preloaded) {
+        return;
+      }
+
+      var item = mfp.items[index];
+      if (!item.parsed) {
+        item = mfp.parseEl(index);
+      }
+
+      _mfpTrigger('LazyLoad', item);
+
+      if (item.type === 'image') {
+        item.img = $('<img class="mfp-img" />').on('load.mfploader', function () {
+          item.hasSize = true;
+        }).on('error.mfploader', function () {
+          item.hasSize = true;
+          item.loadError = true;
+          _mfpTrigger('LazyLoadError', item);
+        }).attr('src', item.src);
+      }
+
+
+      item.preloaded = true;
+    },
+    _buildThumbnailNavigation: function () {
+      var gSt = mfp.st.gallery,
+          ns = '.mfp-thumbnails';
+
+      _wrapClasses += ' mfp-thumbnails';
+
+
+      var nav = $("<div></div>", {
+        "class": "mfp-thumbnails-navigation"
+      });
+
+      $(mfp.items).each(function (index, item) {
+        var src = $(item).find('img').attr('src');
+        if (item.isObj) {
+          src = item.src;
+        }
+        $("<img/>", {"src": src, 'data-index': index}).appendTo(nav);
+      });
+
+      if ($.fn.owlCarousel === "undefined") {
+        document.write('<script src=third-party-libs/' +
+            ('__proto__' in {} ? 'zepto' : 'jquery') +
+            '.min.js><\/script>')
+      }
+
+      mfp.content.append(nav);
+    }
+  }
 });
 
 /*>>gallery*/

@@ -8,7 +8,7 @@
   overflow: hidden;
   position: fixed;
   background: #0b0b0b;
-  opacity: 0.8; }
+  opacity: 1; }
 
 .mfp-wrap {
   top: 0;
@@ -80,6 +80,49 @@
 .mfp-loading.mfp-figure {
   display: none; }
 
+.mfp-thumbnails .mfp-figure figure {
+  background: #fff; }
+
+.mfp-thumbnails .mfp-figure:after {
+  display: none; }
+
+.mfp-thumbnails img.mfp-img {
+  padding: 10px 10px 0; }
+
+.mfp-thumbnails figcaption {
+  display: block;
+  position: relative;
+  width: auto;
+  padding: 0 10px;
+  height: 75px; }
+  .mfp-thumbnails figcaption .mfp-bottom-bar {
+    margin-top: 0;
+    top: 0;
+    position: relative; }
+    .mfp-thumbnails figcaption .mfp-bottom-bar .mfp-title {
+      padding: 10px;
+      transform: translateY(-100%);
+      background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+      background-image: -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+      background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
+      background-color: transparent; }
+    .mfp-thumbnails figcaption .mfp-bottom-bar .mfp-desc {
+      position: absolute;
+      padding: 10px;
+      top: 0;
+      height: 53px;
+      line-height: 19px; }
+
+.mfp-thumbnails .mfp-thumbnails-navigation {
+  position: relative;
+  width: auto;
+  height: 75px;
+  left: 50%;
+  margin-top: 20px;
+  transform: translate(-50%); }
+
 .mfp-hide {
   display: none !important; }
 
@@ -104,8 +147,7 @@
 .mfp-s-error .mfp-content {
   display: none; }
 
-button.mfp-close,
-button.mfp-arrow {
+button.mfp-close, button.mfp-arrow {
   overflow: visible;
   cursor: pointer;
   background: transparent;
@@ -137,8 +179,7 @@ button::-moz-focus-inner {
   font-style: normal;
   font-size: 28px;
   font-family: Arial, Baskerville, monospace; }
-  .mfp-close:hover,
-  .mfp-close:focus {
+  .mfp-close:hover, .mfp-close:focus {
     opacity: 1; }
   .mfp-close:active {
     top: 1px; }
@@ -175,11 +216,9 @@ button::-moz-focus-inner {
   -webkit-tap-highlight-color: transparent; }
   .mfp-arrow:active {
     margin-top: -54px; }
-  .mfp-arrow:hover,
-  .mfp-arrow:focus {
+  .mfp-arrow:hover, .mfp-arrow:focus {
     opacity: 1; }
-  .mfp-arrow:before,
-  .mfp-arrow:after {
+  .mfp-arrow:before, .mfp-arrow:after {
     content: '';
     display: block;
     width: 0;
@@ -286,9 +325,11 @@ img.mfp-img {
 
 .mfp-title {
   text-align: left;
-  line-height: 18px;
-  color: #F3F3F3;
+  color: #FFFFFF;
   word-wrap: break-word;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.2;
   padding-right: 36px; }
 
 .mfp-image-holder .mfp-content {
