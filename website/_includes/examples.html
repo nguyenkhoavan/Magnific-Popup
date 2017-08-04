@@ -1,21 +1,18 @@
 {% if site.url == 'local' %}
-   <!-- <script  src="third-party-libs/zepto.js"></script> -->
-   <script>
-    document.write('<script src=third-party-libs/' +
-    ('__proto__' in {} ? 'zepto' : 'jquery') +
-    '.min.js><\/script>')
-  </script>
-  <script src="dist/jquery.magnific-popup.js?v={{site.mfpversion}}"></script>
-  
-{% else %}
-  <script>
-    document.write('<script src=third-party-libs/' +
-    ('__proto__' in {} ? 'zepto' : 'jquery') +
-    '.min.js><\/script>')
-  </script>
-  <script src="dist/jquery.magnific-popup.min.js?v={{site.mfpversion}}"></script>
-{% endif %}
+<!-- <script  src="third-party-libs/zepto.js"></script> -->
+<script>
+  document.write('<script src=third-party-libs/jquery.min.js><\/script>')
+</script>
+<script src="dist/jquery.magnific-popup.js?v={{site.mfpversion}}"></script>
 
+{% else %}
+<script>
+  document.write('<script src=third-party-libs/' +
+      ('__proto__' in {} ? 'zepto' : 'jquery') +
+      '.min.js><\/script>')
+</script>
+<script src="dist/jquery.magnific-popup.min.js?v={{site.mfpversion}}"></script>
+{% endif %}
 <!--
 
 Each '.example' block contains JS, HTML and optionally CSS for popup. 
@@ -25,7 +22,7 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
 
 <div class="grid-c">
   <div class="example gc3">
-    <h3>Single image lightbox</h3> 
+    <h3>Single image lightbox</h3>
     <p>Three simple popups with different scaling settings.<br/>
       1 &mdash; fits horizontally and vertically,<br/>
       2 &mdash; only horizontally,<br/>
@@ -33,17 +30,17 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
     </p>
     <div class="html-code grid-of-images">
       <a class="image-popup-vertical-fit" href="http://farm9.staticflickr.com/8241/8589392310_7b6127e243_b.jpg" title="Caption. Can be aligned to any side and contain any HTML.">
-        <img src="http://farm9.staticflickr.com/8241/8589392310_7b6127e243_s.jpg" width="75" height="75" />
+        <img src="http://farm9.staticflickr.com/8241/8589392310_7b6127e243_s.jpg" width="75" height="75"/>
       </a>
       <a class="image-popup-fit-width" href="http://farm9.staticflickr.com/8379/8588290361_ecf8c27021_b.jpg" title="This image fits only horizontally.">
-        <img src="http://farm9.staticflickr.com/8379/8588290361_ecf8c27021_s.jpg" width="75" height="75" />
+        <img src="http://farm9.staticflickr.com/8379/8588290361_ecf8c27021_s.jpg" width="75" height="75"/>
       </a>
       <a class="image-popup-no-margins" href="http://farm4.staticflickr.com/3721/9207329484_ba28755ec4_o.jpg">
-        <img src="http://farm4.staticflickr.com/3721/9207329484_ba28755ec4_o.jpg" width="107" height="75" />
+        <img src="http://farm4.staticflickr.com/3721/9207329484_ba28755ec4_o.jpg" width="107" height="75"/>
       </a>
     </div>
     <script type="text/javascript">
-      $(document).ready(function() {
+      $(document).ready(function () {
 
         $('.image-popup-vertical-fit').magnificPopup({
           type: 'image',
@@ -52,7 +49,7 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
           image: {
             verticalFit: true
           }
-          
+
         });
 
         $('.image-popup-fit-width').magnificPopup({
@@ -81,74 +78,89 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
       });
     </script>
     <style type="text/css">
-    /* padding-bottom and top for image */
-    .mfp-no-margins img.mfp-img {
-      padding: 0;
-    }
-    /* position of shadow behind the image */
-    .mfp-no-margins .mfp-figure:after {
-      top: 0;
-      bottom: 0;
-    }
-    /* padding for main container */
-    .mfp-no-margins .mfp-container {
-      padding: 0;
-    }
+      /* padding-bottom and top for image */
+      .mfp-no-margins img.mfp-img {
+        padding: 0;
+      }
 
+      /* position of shadow behind the image */
+      .mfp-no-margins .mfp-figure:after {
+        top: 0;
+        bottom: 0;
+      }
 
-    /* 
+      /* padding for main container */
+      .mfp-no-margins .mfp-container {
+        padding: 0;
+      }
 
-    for zoom animation 
-    uncomment this part if you haven't added this code anywhere else
+      /*
 
-    */
-    /*
-    
-    .mfp-with-zoom .mfp-container,
-    .mfp-with-zoom.mfp-bg {
-      opacity: 0;
-      -webkit-backface-visibility: hidden;
-      -webkit-transition: all 0.3s ease-out; 
-      -moz-transition: all 0.3s ease-out; 
-      -o-transition: all 0.3s ease-out; 
-      transition: all 0.3s ease-out;
-    }
-    
-    .mfp-with-zoom.mfp-ready .mfp-container {
-        opacity: 1;
-    }
-    .mfp-with-zoom.mfp-ready.mfp-bg {
-        opacity: 0.8;
-    }
-    
-    .mfp-with-zoom.mfp-removing .mfp-container, 
-    .mfp-with-zoom.mfp-removing.mfp-bg {
-      opacity: 0;
-    }
-    */
+      for zoom animation
+      uncomment this part if you haven't added this code anywhere else
+
+      */
+      /*
+
+      .mfp-with-zoom .mfp-container,
+      .mfp-with-zoom.mfp-bg {
+        opacity: 0;
+        -webkit-backface-visibility: hidden;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+      }
+
+      .mfp-with-zoom.mfp-ready .mfp-container {
+          opacity: 1;
+      }
+      .mfp-with-zoom.mfp-ready.mfp-bg {
+          opacity: 0.8;
+      }
+
+      .mfp-with-zoom.mfp-removing .mfp-container,
+      .mfp-with-zoom.mfp-removing.mfp-bg {
+        opacity: 0;
+      }
+      */
     </style>
   </div>
 
 
-
-
-
   <div class="example gc3">
     <h3>Lightbox gallery</h3>
-    <p>You may put any HTML content in each gallery item and <a href="http://codepen.io/dimsemenov/pen/vKrqs">mix content types</a>. In this example lazy-loading of images is enabled for the next image based on move direction. If you wish to add touch-swipe support, check <a href="http://coding.smashingmagazine.com/2013/05/02/truly-responsive-lightbox/">my article</a> on the Smashing Magazine, or <a href="http://photoswipe.com">new PhotoSwipe</a> script.</p>
+    <p>You may put any HTML content in each gallery item and
+      <a href="http://codepen.io/dimsemenov/pen/vKrqs">mix content types</a>. In this example lazy-loading of images is enabled for the next image based on move direction. If you wish to add touch-swipe support, check
+      <a href="http://coding.smashingmagazine.com/2013/05/02/truly-responsive-lightbox/">my article</a> on the Smashing Magazine, or
+      <a href="http://photoswipe.com">new PhotoSwipe</a> script.</p>
     <div class="html-code grid-of-images">
       <div class="popup-gallery">
-        <a href="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" title="The Cleaner"><img src="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg" width="75" height="75" /></a>
-        <a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" title="Winter Dance"><img src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_s.jpg" width="75" height="75" /></a>
-        <a href="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_b.jpg" title="The Uninvited Guest"><img src="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_s.jpg" width="75" height="75" /></a>
-        <a href="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_b.jpg" title="Oh no, not again!"><img src="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_s.jpg" width="75" height="75" /></a>
-        <a href="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_b.jpg" title="Swan Lake"><img src="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg" width="75" height="75" /></a>
-        <a href="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_b.jpg" title="The Shake"><img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="75" height="75" /></a>
-        <a href="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_b.jpg" title="Who's that, mommy?"><img src="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_s.jpg" width="75" height="75" /></a>
+        <a href="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" url="http://google.com" title="The Cleaner" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" url="http://google.com" title="Winter Dance" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_b.jpg" url="http://google.com" title="The Uninvited Guest" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_b.jpg" url="http://google.com" title="Oh no, not again!" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_b.jpg" url="http://google.com" title="Swan Lake" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_b.jpg" url="http://google.com" title="The Shake" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_b.jpg" url="http://google.com" title="Who's that, mommy?" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" url="http://google.com" title="The Cleaner" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" url="http://google.com" title="Winter Dance" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_b.jpg" url="http://google.com" title="The Uninvited Guest" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_b.jpg" url="http://google.com" title="Oh no, not again!" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_b.jpg" url="http://google.com" title="Swan Lake" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_b.jpg" url="http://google.com" title="The Shake" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_b.jpg" url="http://google.com" title="Who's that, mommy?" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" url="http://google.com" title="The Cleaner" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" url="http://google.com" title="Winter Dance" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_b.jpg" url="http://google.com" title="The Uninvited Guest" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_b.jpg" url="http://google.com" title="Oh no, not again!" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_b.jpg" url="http://google.com" title="Swan Lake" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_b.jpg" url="http://google.com" title="The Shake" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="75" height="75"/></a>
+        <a href="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_b.jpg" url="http://google.com" title="Who's that, mommy?" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."><img src="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_s.jpg" width="75" height="75"/></a>
       </div>
     </div>
     <script type="text/javascript">
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('.popup-gallery').magnificPopup({
           delegate: 'a',
           type: 'image',
@@ -157,12 +169,15 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
           gallery: {
             enabled: true,
             navigateByImgClick: true,
-            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
           },
           image: {
             tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-            titleSrc: function(item) {
-              return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+            titleSrc: function (item) {
+              return item.el.attr('title');
+            },
+            urlSrc: function (item) {
+              return item.el.attr('url')
             }
           }
         });
@@ -171,11 +186,8 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
   </div>
 
 
-
-
-
   <div class="example gc3">
-    <h3>Zoom-gallery</h3> 
+    <h3>Zoom-gallery</h3>
     <p>If you wish to open the popup only after image is fully loaded, you may preload image via JS. Or use scaled down image instead of thumbnail. Zoom effect works only with images, for now.</p>
     <div class="html-code grid-of-images">
       <div class="zoom-gallery">
@@ -187,15 +199,15 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
 
          -->
         <a href="http://farm4.staticflickr.com/3763/9204547649_0472680945_o.jpg" data-source="http://500px.com/photo/32736307" title="Into The Blue" style="width:193px;height:125px;">
-          <img src="http://farm4.staticflickr.com/3763/9204547649_7de96ee188_t.jpg" width="193" height="125" />
+          <img src="http://farm4.staticflickr.com/3763/9204547649_7de96ee188_t.jpg" width="193" height="125"/>
         </a>
         <a href="http://farm3.staticflickr.com/2856/9207329420_7f2a668b06_o.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre" style="width:82px;height:125px;">
-          <img src="http://farm3.staticflickr.com/2856/9207329420_e485948b01_t.jpg" width="82px" height="125" />
+          <img src="http://farm3.staticflickr.com/2856/9207329420_e485948b01_t.jpg" width="82px" height="125"/>
         </a>
       </div>
     </div>
     <script type="text/javascript">
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('.zoom-gallery').magnificPopup({
           delegate: 'a',
           type: 'image',
@@ -204,8 +216,8 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
           mainClass: 'mfp-with-zoom mfp-img-mobile',
           image: {
             verticalFit: true,
-            titleSrc: function(item) {
-              return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
+            titleSrc: function (item) {
+              return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
             }
           },
           gallery: {
@@ -214,48 +226,46 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
           zoom: {
             enabled: true,
             duration: 300, // don't foget to change the duration also in CSS
-            opener: function(element) {
+            opener: function (element) {
               return element.find('img');
             }
           }
-          
+
         });
       });
     </script>
     <style type="text/css">
-    .image-source-link {
-      color: #98C3D1;
-    }
+      .image-source-link {
+        color: #98C3D1;
+      }
 
-    .mfp-with-zoom .mfp-container,
-    .mfp-with-zoom.mfp-bg {
-      opacity: 0;
-      -webkit-backface-visibility: hidden;
-      /* ideally, transition speed should match zoom duration */
-      -webkit-transition: all 0.3s ease-out; 
-      -moz-transition: all 0.3s ease-out; 
-      -o-transition: all 0.3s ease-out; 
-      transition: all 0.3s ease-out;
-    }
-    
-    .mfp-with-zoom.mfp-ready .mfp-container {
+      .mfp-with-zoom .mfp-container,
+      .mfp-with-zoom.mfp-bg {
+        opacity: 0;
+        -webkit-backface-visibility: hidden;
+        /* ideally, transition speed should match zoom duration */
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+      }
+
+      .mfp-with-zoom.mfp-ready .mfp-container {
         opacity: 1;
-    }
-    .mfp-with-zoom.mfp-ready.mfp-bg {
+      }
+
+      .mfp-with-zoom.mfp-ready.mfp-bg {
         opacity: 0.8;
-    }
-    
-    .mfp-with-zoom.mfp-removing .mfp-container, 
-    .mfp-with-zoom.mfp-removing.mfp-bg {
-      opacity: 0;
-    }
+      }
+
+      .mfp-with-zoom.mfp-removing .mfp-container,
+      .mfp-with-zoom.mfp-removing.mfp-bg {
+        opacity: 0;
+      }
 
 
     </style>
   </div>
-
-
-
 
 
   <div class="example gc3">
@@ -263,7 +273,7 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
     <p>In this example lightboxes are automatically disabled on small screen size and default behavior of link is triggered.</p>
     <div class="html-code">
       <a class="popup-youtube" href="http://www.youtube.com/watch?v=0O2aH4XLbto">Open YouTube video</a><br/>
-      <a class="popup-vimeo" href="https://vimeo.com/45830194" >Open Vimeo video</a><br/>
+      <a class="popup-vimeo" href="https://vimeo.com/45830194">Open Vimeo video</a><br/>
       <a class="popup-gmaps" href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom">Open Google Map</a>
     </div>
     <style type="text/css">
@@ -272,32 +282,36 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
        */
       .mfp-fade.mfp-bg {
         opacity: 0;
-        -webkit-transition: all 0.15s ease-out; 
-        -moz-transition: all 0.15s ease-out; 
+        -webkit-transition: all 0.15s ease-out;
+        -moz-transition: all 0.15s ease-out;
         transition: all 0.15s ease-out;
       }
+
       .mfp-fade.mfp-bg.mfp-ready {
         opacity: 0.8;
       }
+
       .mfp-fade.mfp-bg.mfp-removing {
         opacity: 0;
       }
 
       .mfp-fade.mfp-wrap .mfp-content {
         opacity: 0;
-        -webkit-transition: all 0.15s ease-out; 
-        -moz-transition: all 0.15s ease-out; 
+        -webkit-transition: all 0.15s ease-out;
+        -moz-transition: all 0.15s ease-out;
         transition: all 0.15s ease-out;
       }
+
       .mfp-fade.mfp-wrap.mfp-ready .mfp-content {
         opacity: 1;
       }
+
       .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
         opacity: 0;
       }
     </style>
     <script type="text/javascript">
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
           disableOn: 700,
           type: 'iframe',
@@ -312,15 +326,13 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
   </div>
 
 
-
-
-
   <div class="example gc3">
     <h3>Dialog with CSS animation</h3>
-    <p>Animations are added with simple CSS transitions, you can make them look however you wish.<br/>More <a href="http://codepen.io/dimsemenov/pen/GAIkt">animation effects on CodePen</a>.</p>
+    <p>Animations are added with simple CSS transitions, you can make them look however you wish.<br/>More
+      <a href="http://codepen.io/dimsemenov/pen/GAIkt">animation effects on CodePen</a>.</p>
     <div class="html-code">
-      <a class="popup-with-zoom-anim" href="#small-dialog" >Open with fade-zoom animation</a><br/>
-      <a class="popup-with-move-anim" href="#small-dialog" >Open with fade-slide animation</a>
+      <a class="popup-with-zoom-anim" href="#small-dialog">Open with fade-zoom animation</a><br/>
+      <a class="popup-with-move-anim" href="#small-dialog">Open with fade-slide animation</a>
 
       <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
       <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
@@ -330,7 +342,7 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
     </div>
 
     <script type="text/javascript">
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('.popup-with-zoom-anim').magnificPopup({
           type: 'inline',
 
@@ -341,7 +353,7 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
 
           closeBtnInside: true,
           preloader: false,
-          
+
           midClick: true,
           removalDelay: 300,
           mainClass: 'my-mfp-zoom-in'
@@ -357,7 +369,7 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
 
           closeBtnInside: true,
           preloader: false,
-          
+
           midClick: true,
           removalDelay: 300,
           mainClass: 'my-mfp-slide-bottom'
@@ -376,74 +388,67 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
         position: relative;
       }
 
-
       /**
        * Fade-zoom animation for first dialog
        */
-      
+
       /* start state */
       .my-mfp-zoom-in .zoom-anim-dialog {
         opacity: 0;
-
-        -webkit-transition: all 0.2s ease-in-out; 
-        -moz-transition: all 0.2s ease-in-out; 
-        -o-transition: all 0.2s ease-in-out; 
-        transition: all 0.2s ease-in-out; 
-
-
-
-        -webkit-transform: scale(0.8); 
-        -moz-transform: scale(0.8); 
-        -ms-transform: scale(0.8); 
-        -o-transform: scale(0.8); 
-        transform: scale(0.8); 
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        transform: scale(0.8);
       }
 
       /* animate in */
       .my-mfp-zoom-in.mfp-ready .zoom-anim-dialog {
         opacity: 1;
-
-        -webkit-transform: scale(1); 
-        -moz-transform: scale(1); 
-        -ms-transform: scale(1); 
-        -o-transform: scale(1); 
-        transform: scale(1); 
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
       }
 
       /* animate out */
       .my-mfp-zoom-in.mfp-removing .zoom-anim-dialog {
-        -webkit-transform: scale(0.8); 
-        -moz-transform: scale(0.8); 
-        -ms-transform: scale(0.8); 
-        -o-transform: scale(0.8); 
-        transform: scale(0.8); 
-
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        transform: scale(0.8);
         opacity: 0;
       }
 
       /* Dark overlay, start state */
       .my-mfp-zoom-in.mfp-bg {
         opacity: 0;
-        -webkit-transition: opacity 0.3s ease-out; 
-        -moz-transition: opacity 0.3s ease-out; 
-        -o-transition: opacity 0.3s ease-out; 
+        -webkit-transition: opacity 0.3s ease-out;
+        -moz-transition: opacity 0.3s ease-out;
+        -o-transition: opacity 0.3s ease-out;
         transition: opacity 0.3s ease-out;
       }
+
       /* animate in */
       .my-mfp-zoom-in.mfp-ready.mfp-bg {
         opacity: 0.8;
       }
+
       /* animate out */
       .my-mfp-zoom-in.mfp-removing.mfp-bg {
         opacity: 0;
       }
 
-
-
       /**
        * Fade-move animation for second dialog
        */
-      
+
       /* at start */
       .my-mfp-slide-bottom .zoom-anim-dialog {
         opacity: 0;
@@ -451,58 +456,53 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
         -moz-transition: all 0.2s ease-out;
         -o-transition: all 0.2s ease-out;
         transition: all 0.2s ease-out;
-
-        -webkit-transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
-        -moz-transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
-        -ms-transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
-        -o-transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
-        transform: translateY(-20px) perspective( 600px ) rotateX( 10deg );
-
+        -webkit-transform: translateY(-20px) perspective(600px) rotateX(10deg);
+        -moz-transform: translateY(-20px) perspective(600px) rotateX(10deg);
+        -ms-transform: translateY(-20px) perspective(600px) rotateX(10deg);
+        -o-transform: translateY(-20px) perspective(600px) rotateX(10deg);
+        transform: translateY(-20px) perspective(600px) rotateX(10deg);
       }
-      
+
       /* animate in */
       .my-mfp-slide-bottom.mfp-ready .zoom-anim-dialog {
         opacity: 1;
-        -webkit-transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
-        -moz-transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
-        -ms-transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
-        -o-transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
-        transform: translateY(0) perspective( 600px ) rotateX( 0 ); 
+        -webkit-transform: translateY(0) perspective(600px) rotateX(0);
+        -moz-transform: translateY(0) perspective(600px) rotateX(0);
+        -ms-transform: translateY(0) perspective(600px) rotateX(0);
+        -o-transform: translateY(0) perspective(600px) rotateX(0);
+        transform: translateY(0) perspective(600px) rotateX(0);
       }
 
       /* animate out */
       .my-mfp-slide-bottom.mfp-removing .zoom-anim-dialog {
         opacity: 0;
-
-        -webkit-transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
-        -moz-transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
-        -ms-transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
-        -o-transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
-        transform: translateY(-10px) perspective( 600px ) rotateX( 10deg ); 
+        -webkit-transform: translateY(-10px) perspective(600px) rotateX(10deg);
+        -moz-transform: translateY(-10px) perspective(600px) rotateX(10deg);
+        -ms-transform: translateY(-10px) perspective(600px) rotateX(10deg);
+        -o-transform: translateY(-10px) perspective(600px) rotateX(10deg);
+        transform: translateY(-10px) perspective(600px) rotateX(10deg);
       }
 
       /* Dark overlay, start state */
       .my-mfp-slide-bottom.mfp-bg {
         opacity: 0;
-
-        -webkit-transition: opacity 0.3s ease-out; 
-        -moz-transition: opacity 0.3s ease-out; 
-        -o-transition: opacity 0.3s ease-out; 
+        -webkit-transition: opacity 0.3s ease-out;
+        -moz-transition: opacity 0.3s ease-out;
+        -o-transition: opacity 0.3s ease-out;
         transition: opacity 0.3s ease-out;
       }
+
       /* animate in */
       .my-mfp-slide-bottom.mfp-ready.mfp-bg {
         opacity: 0.8;
       }
+
       /* animate out */
       .my-mfp-slide-bottom.mfp-removing.mfp-bg {
         opacity: 0;
       }
     </style>
   </div>
-
-
-
 
 
   <div class="example gc3">
@@ -516,7 +516,9 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
       <form id="test-form" class="mfp-hide white-popup-block">
         <h1>Form</h1>
         <fieldset style="border:0;">
-          <p>Lightbox has an option to automatically focus on the first input. It's strongly recommended to use <code>inline</code> popup type for lightboxes with form instead of <code>ajax</code> (to keep entered data if the user accidentally refreshed the page).</p>
+          <p>Lightbox has an option to automatically focus on the first input. It's strongly recommended to use
+            <code>inline</code> popup type for lightboxes with form instead of
+            <code>ajax</code> (to keep entered data if the user accidentally refreshed the page).</p>
           <ol>
             <li>
               <label for="name">Name</label>
@@ -539,7 +541,7 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
       </form>
     </div>
     <script type="text/javascript">
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('.popup-with-form').magnificPopup({
           type: 'inline',
           preloader: false,
@@ -548,8 +550,8 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
           // When elemened is focused, some mobile browsers in some cases zoom in
           // It looks not nice, so we disable it:
           callbacks: {
-            beforeOpen: function() {
-              if($(window).width() < 700) {
+            beforeOpen: function () {
+              if ($(window).width() < 700) {
                 this.st.focus = false;
               } else {
                 this.st.focus = '#name';
@@ -562,18 +564,15 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
   </div>
 
 
-
-
-
   <div class="example gc3">
     <h3>Ajax popup</h3>
     <p>You have full control of what is displayed in popup, align it to any side via CSS, enable or disable scroll on right side of window - whatever.</p>
     <div class="html-code">
-      <a class="simple-ajax-popup-align-top" href="site-assets/ajax/test-ajax.html" >Load content via ajax</a><br/>
-      <a class="simple-ajax-popup" href="site-assets/ajax/test-ajax-2.html" >Load another content via ajax</a>
+      <a class="simple-ajax-popup-align-top" href="site-assets/ajax/test-ajax.html">Load content via ajax</a><br/>
+      <a class="simple-ajax-popup" href="site-assets/ajax/test-ajax-2.html">Load another content via ajax</a>
     </div>
     <script type="text/javascript">
-      $(document).ready(function() {
+      $(document).ready(function () {
 
         $('.simple-ajax-popup-align-top').magnificPopup({
           type: 'ajax',
@@ -584,13 +583,10 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
         $('.simple-ajax-popup').magnificPopup({
           type: 'ajax'
         });
-        
+
       });
     </script>
   </div>
-
-
-
 
 
   <div class="example gc3">
@@ -624,26 +620,20 @@ Each '.example' block contains JS, HTML and optionally CSS for popup.
   </div>
 
 
-
-
-
   <div class="example gc3">
     <h3>Error handling</h3>
     <p>This is just basic example of how error messages are displayed. Surely, you can change text or style them.</p>
     <div class="html-code">
       <!-- classes mfp-image and mfp-ajax define type of the popup -->
-      <a id="broken-image" class="mfp-image" href="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Blois_Loire_Panorama_-_July_2011.jpg/640px-Blois_Loire_Panorama_-_July_2011-fake.jpg" >Broken image</a><br/>
-      <a id="broken-ajax" class="mfp-ajax" href="http://example.com/fakeg" >Broken ajax request</a>
+      <a id="broken-image" class="mfp-image" href="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Blois_Loire_Panorama_-_July_2011.jpg/640px-Blois_Loire_Panorama_-_July_2011-fake.jpg">Broken image</a><br/>
+      <a id="broken-ajax" class="mfp-ajax" href="http://example.com/fakeg">Broken ajax request</a>
     </div>
     <script type="text/javascript">
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('#broken-image, #broken-ajax').magnificPopup({});
       });
     </script>
   </div>
-
-
-
 
 
   <!-- <div class="example gc3">

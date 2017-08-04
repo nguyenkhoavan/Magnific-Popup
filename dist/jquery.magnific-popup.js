@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2017-07-31
+/*! Magnific Popup - v1.1.0 - 2017-08-01
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
@@ -1876,21 +1876,56 @@ $.magnificPopup.registerModule('gallery', {
 
 
       var nav = $("<div></div>", {
-        "class": "mfp-thumbnails-navigation"
+        "class": "mfp-thumbnails-navigation owl-carousel"
       });
 
       $(mfp.items).each(function (index, item) {
         var src = $(item).find('img').attr('src');
-        if (item.isObj) {
+        if (!!(item.src)) {
           src = item.src;
         }
-        $("<img/>", {"src": src, 'data-index': index}).appendTo(nav);
+        $("<img/>", {
+          "src": src,
+          'data-index': index,
+          'width': 'auto',
+          'height': 75
+        }).appendTo($("<a></a>")).appendTo(nav);
       });
 
-      if ($.fn.owlCarousel === "undefined") {
-        document.write('<script src=third-party-libs/' +
-            ('__proto__' in {} ? 'zepto' : 'jquery') +
-            '.min.js><\/script>')
+      if ($.fn.owlCarousel === undefined) {
+
+        $('<link/>', {
+          id: "owl_carousel_css",
+          rel: 'stylesheet',
+          type: 'text/css',
+          href: './bower_components/owl.carousel/dist/assets/owl.carousel.min.css'
+        }).appendTo('head');
+
+        var carouselOptions = {
+          items: 8,
+          type: 'image',
+          margin: 2,
+          loop: true,
+          pagination: false,
+          navigation: true,
+          autoWidth: true
+        };
+
+        if (!$("#owl_carousel").length) {
+          $.ajax({
+            url: './bower_components/owl.carousel/dist/owl.carousel.min.js',
+            dataType: "script",
+            success: function (res) {
+              $("<script></script>", {
+                id: "owl_carousel"
+              }).text(res).appendTo('body');
+
+              $(nav).owlCarousel(carouselOptions);
+            }
+          });
+        } else {
+          $(nav).owlCarousel(carouselOptions);
+        }
       }
 
       mfp.content.append(nav);

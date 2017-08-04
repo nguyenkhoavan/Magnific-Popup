@@ -145,7 +145,6 @@
 
 // Thumbnail Navigation
 .mfp-thumbnails {
-
   .mfp-figure {
     figure {
       background: #fff;
@@ -197,6 +196,7 @@
     position: relative;
     width: auto;
     height: 75px;
+    max-width: 630px;
     left: 50%;
     margin-top: 20px;
     transform: translate(-50%);
@@ -592,4 +592,3 @@ button {
     padding-right: $mfp-popup-padding-left-mobile;
   }
 }
-
